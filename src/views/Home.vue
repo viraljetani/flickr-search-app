@@ -16,7 +16,7 @@
 
 <script>
 import axios from 'axios';
-import config from '../../config';
+import config from '../../vue.config';
 
 export default {
   name: 'Home',
