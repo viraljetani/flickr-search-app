@@ -7,20 +7,20 @@
     </form>
     <p v-if="loading">Loading...</p>
     <ul v-else>
-      <li v-for="image in images" :key="image.id">
-        <img :src="image.url_m" :alt="image.title">
-      </li>
+      <image-card v-for="image in images" :key="image.id" :image="image"></image-card>
     </ul>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import ImageCard from '@/components/ImageCard.vue';
 import config from '../../config';
 
 export default {
   name: 'Home',
   components: {
+    ImageCard,
   },
   data() {
     return {
@@ -55,7 +55,7 @@ export default {
           per_page: 15,
           format: 'json',
           nojsoncallback: 1,
-          extras: 'date_upload, owner_name, tags,url_l, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o',
+          extras: 'date_taken, date_upload, owner_name, tags,url_l, url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o',
         },
       });
     },
