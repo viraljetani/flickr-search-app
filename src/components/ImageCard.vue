@@ -6,7 +6,7 @@
             <p v-else class="image-title">No Title</p>
             <p class="image-owner">- By {{image.ownername}} <br /></p>
             <p class="image-date">- {{image.datetaken | moment}}</p>
-            <p class="image-tags">{{processedTags}}</p>
+            <p class="image-tags"><span v-for="tag in processedTags" :key="tag">{{tag}}</span></p>
         </div>
     </li>
 </template>
@@ -25,8 +25,9 @@ export default {
   computed: {
     processedTags() {
       const tagsArray = this.image.tags.split(' ');
-      const tagString = tagsArray.slice(0, 3);
-      return tagString.join(' ');
+      // return tagsArray.slice(0, 3).map((n) => `<span>${n}</span>`).join(' ');
+      return tagsArray.slice(0, 3);
+      // return tagString.join(' ');
     },
   },
 };
@@ -78,5 +79,10 @@ export default {
 }
 .image-tags{
     font-size: .7rem;
+}
+.image-tags span {
+    background: #CAC4CE;
+    padding:2px;
+    margin:0 2px 0 2px;
 }
 </style>
