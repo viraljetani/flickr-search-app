@@ -3,12 +3,10 @@
         <img class="image-card__image" :src="image.url_n" :alt="image.title">
         <div class="image-card__body">
             <p v-if="image.title" class="image-title">{{image.title}}</p>
-            <p v-else class="image-title">No Title Found</p>
-            <p class="image-owner">By {{image.ownername}}</p>
-            <section class="image-date-view-wrapper">
-                <p class="image-date">{{image.datetaken | moment}}</p>
-                <p class="image-tags">{{processedTags}}</p>
-            </section>
+            <p v-else class="image-title">No Title</p>
+            <p class="image-owner">- By {{image.ownername}} <br /></p>
+            <p class="image-date">- {{image.datetaken | moment}}</p>
+            <p class="image-tags">{{processedTags}}</p>
         </div>
     </li>
 </template>
@@ -61,10 +59,12 @@ export default {
 .image-title {
   font-weight: bold;
   margin: 0;
+  font-size: 1rem;
 }
 .image-owner {
   margin-top: 0;
-  font-size: .8rem;
+  margin-bottom: 2px;
+  font-size: .7rem;
 }
 .image-title,
 .image-owner {
@@ -72,14 +72,11 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.image-date-view-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.image-date {
+    margin-top: 0;
+    font-size: 0.7rem;
 }
-.image-date,
-.image-views {
-  margin-bottom: 0;
-  font-size: .8rem;
+.image-tags{
+    font-size: .7rem;
 }
 </style>

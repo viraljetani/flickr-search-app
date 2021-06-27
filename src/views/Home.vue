@@ -15,7 +15,7 @@
     <div class="wrapper">
     <p v-if="loading" class="text-centered">Loading...</p>
     <ul class="image-card-grid" v-else>
-      <image-card v-for="image in images" :key="image.id" :image="image"></image-card>
+      <image-card v-for="image in filterNullImages" :key="image.id" :image="image"></image-card>
     </ul>
     </div>
   </div>
@@ -81,6 +81,11 @@ export default {
     },
   },
 
+  computed: {
+    filterNullImages() {
+      return this.images.filter((image) => image.url_n);
+    },
+  },
   metaInfo() {
     return {
       title: 'Flickr Search App - VueJs, Flickr Api',
@@ -95,6 +100,21 @@ export default {
 </script>
 
 <style lang="scss">
+#nav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #8D86C9;
+  background: #9067C6;
+}
+#nav a{
+  padding:0 5px 0 5px;
+  color:#fff;
+  text-decoration: none;
+}
+#nav a.router-link-exact-active {
+  color: #242038
+}
 .screen-reader-only {
   height: 1px;
   width: 1px;
@@ -125,7 +145,7 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: #8D86C9;
+  background: #fff;
 }
 .searchbar {
   width: 300px;
@@ -158,7 +178,7 @@ export default {
   border: none;
 }
 .btn-purple {
-  background: #242038;
+  background: #9067C6;
   color: white;
   font-weight: bold;
 }
