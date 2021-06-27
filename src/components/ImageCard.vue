@@ -27,7 +27,7 @@ export default {
   computed: {
     processedTags() {
       const tagsArray = this.image.tags.split(' ');
-      const tagString = tagsArray.slice(0,3);
+      const tagString = tagsArray.slice(0, 3);
       return tagString.join(' ');
     },
   },

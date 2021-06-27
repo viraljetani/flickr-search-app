@@ -66,6 +66,17 @@ export default {
       });
     },
   },
+
+  metaInfo() {
+    return {
+      title: 'Flickr Search App - VueJs, Flickr Api',
+      meta: [
+        { name: 'description', content: 'Flickr Search App created using VueJs and Flickr Public photos api.' },
+
+      ],
+    };
+  },
+
 };
 </script>
 
@@ -116,7 +127,7 @@ export default {
 }
 .searchbar-input {
   padding: .5rem 1rem;
-  border-radius: 20px;
+  border-radius: 5px;
   font-size: 1rem;
   border: 1px solid gray;
   min-width: 300px;
