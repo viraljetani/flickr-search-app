@@ -1,6 +1,8 @@
 <template>
     <li class="image-card">
-        <img class="image-card__image" :src="image.url_n" :alt="image.title">
+        <a :href="image.url_l" target="_blank">
+            <img class="image-card__image" :src="image.url_n" :alt="image.title">
+        </a>
         <div class="image-card__body">
             <p v-if="image.title" class="image-title">{{image.title}}</p>
             <p v-else class="image-title">No Title</p>
