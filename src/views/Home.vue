@@ -4,9 +4,12 @@
       <form class="searchbar">
         <label>
           <span class='screen-reader-only'>Search:</span>
-          <input v-model="tag" placeholder="Search for photos" type="text" class="searchbar-input">
+          <input v-model="tag" @keyup="searchTimeout"
+            placeholder="Search for flickr photos"
+            type="text" class="searchbar-input">
         </label>
-        <button type="submit" class="btn btn--green btn--go" @click.prevent="search">Search</button>
+        <button type="submit" class="btn btn-purple btn--go"
+         @click.prevent="search">Search</button>
       </form>
     </nav>
     <div class="wrapper">
@@ -33,13 +36,24 @@ export default {
       tag: '',
       loading: false,
       images: [],
+      timeout: null,
     };
   },
   methods: {
+    searchTimeout() {
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        // this.console.log('searching:', this.tag);
+        this.search();
+      }, 700);
+    },
     search() {
       this.loading = true;
       // this.console.log('Searching for: ', this.tag);
-
+      if (this.tag === '') {
+        this.loading = false;
+        return;
+      }
       this.getImages()
         .then((res) => {
           this.images = res.data.photos.photo;
@@ -111,7 +125,7 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: #F0F0F0;
+  background: #8D86C9;
 }
 .searchbar {
   width: 300px;
@@ -143,8 +157,8 @@ export default {
   background: transparent;
   border: none;
 }
-.btn--green {
-  background: #42b983;
+.btn-purple {
+  background: #242038;
   color: white;
   font-weight: bold;
 }
